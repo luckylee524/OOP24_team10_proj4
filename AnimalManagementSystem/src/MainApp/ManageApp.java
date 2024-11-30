@@ -1,10 +1,12 @@
-package MainApp;
+package src.MainApp;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import AnimalManage.AnimalManageApp;
+import src.AnimalManage.AnimalManageApp;
 import ProductManage.ProductManageApp;
+import src.AnimalManage.AnimalManageSystem;
+import src.AnimalManage.AnimalManageSystemImpl;
 
 public class ManageApp {
 
@@ -30,6 +32,9 @@ public class ManageApp {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT)); // 우측 정렬
         JButton button1 = new JButton("1번 화면");
         JButton button2 = new JButton("2번 화면");
+
+        // 1번 화면
+        animalManageApp.initialize();
         
         
         // 버튼에 화면 전환 기능 추가
