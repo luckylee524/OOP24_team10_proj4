@@ -9,7 +9,7 @@ public class ManageApp {
 
 	public static void main(String[] args) {
 	    JFrame frame = new JFrame("App Manager");
-	    frame.setSize(600, 400);
+	    frame.setSize(800, 900);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	    // CardLayout 설정

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AnimalManageApp {
     private final AnimalManageSystemImpl animalManageSystem;
-    private JFrame frame;
+    private JPanel frame;
     private JTable animalTable;
     private DefaultTableModel tableModel;
     private JTextField searchField, deleteField, updateNameField, updateStatusField, vaccinationStatusField, nameField,
@@ -24,8 +24,7 @@ public class AnimalManageApp {
     }
 
     public void initialize() {
-        frame = new JFrame("Animal Manage System");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new JPanel();
         frame.setSize(800, 900);
         frame.setLayout(new BorderLayout());
 
@@ -193,7 +192,7 @@ public class AnimalManageApp {
 
     // Return the panel of the AnimalManageApp
     public JPanel getPanel() {
-        return (JPanel) frame.getContentPane();  // Cast to JPanel
+        return frame;  // Cast to JPanel
     }
 
     // Display animals in the JTable
