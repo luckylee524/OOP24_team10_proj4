@@ -2,11 +2,9 @@ package MainApp;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import AnimalManage.AnimalManageApp;
 import ProductManage.ProductManageApp;
-import AnimalManage.AnimalManageSystem;
-import AnimalManage.AnimalManageSystemImpl;
+
 
 public class ManageApp {
 
