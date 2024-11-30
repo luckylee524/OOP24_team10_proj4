@@ -5,7 +5,6 @@ import java.awt.*;
 import AnimalManage.AnimalManageApp;
 import ProductManage.ProductManageApp;
 
-
 public class ManageApp {
 
 	public static void main(String[] args) {
