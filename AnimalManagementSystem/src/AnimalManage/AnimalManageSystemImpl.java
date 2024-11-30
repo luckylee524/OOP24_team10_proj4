@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class AnimalManageSystemImpl implements AnimalManageSystem {
 
-	private static final String FILE_NAME = "animals.txt";
+	private static final String FILE_NAME = "AnimalList.txt";
 	private final Scanner scanner = new Scanner(System.in);
 
 	@Override

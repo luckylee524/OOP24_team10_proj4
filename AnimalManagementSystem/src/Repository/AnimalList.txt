@@ -1,0 +1,4 @@
+cat,jeff,3,Male,New York,Pending,No
+dog,jessie,4,Female,Tokyo,Confirmed,Yes
+horse,john,1,Male,Seoul,Confirmed,Yes
+mouse,sophia,2,Female,London,Not Confirmed,Yes
