@@ -7,6 +7,7 @@ import AnimalManage.AnimalManageApp;
 import ProductManage.ProductManageApp;
 
 public class ManageApp {
+
 	public static void main(String[] args) {
         JFrame frame = new JFrame("App Manager");
         frame.setSize(600, 400);
@@ -20,21 +21,21 @@ public class ManageApp {
         AnimalManageApp animalManageApp = new AnimalManageApp();
         ProductManageApp medicineManageApp = new ProductManageApp();
 
-        /*
-        mainPanel.add(animalManageApp.getPanel(), "AnimalManage");
+        
+        //mainPanel.add(animalManageApp.getPanel(), "AnimalManage");
         mainPanel.add(medicineManageApp.getPanel(), "ProductManageApp");
-		*/
+
         
         // 우측 상단 버튼 패널
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT)); // 우측 정렬
         JButton button1 = new JButton("1번 화면");
         JButton button2 = new JButton("2번 화면");
         
-        /*
+        
         // 버튼에 화면 전환 기능 추가
         button1.addActionListener(e -> cardLayout.show(mainPanel, "AnimalManage"));
         button2.addActionListener(e -> cardLayout.show(mainPanel, "ProductManageApp"));
-		*/
+
 		
         buttonPanel.add(button1);
         buttonPanel.add(button2);
@@ -46,4 +47,5 @@ public class ManageApp {
 
         frame.setVisible(true);
     }
+
 }
