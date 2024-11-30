@@ -1,4 +1,4 @@
-package src.AnimalManage;
+package AnimalManage;
 
 import java.util.List;
 

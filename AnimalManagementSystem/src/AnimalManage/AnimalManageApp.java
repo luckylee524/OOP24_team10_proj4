@@ -1,4 +1,4 @@
-package src.AnimalManage;
+package AnimalManage;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -191,6 +191,11 @@ public class AnimalManageApp {
         frame.setVisible(true);
     }
 
+    // Return the panel of the AnimalManageApp
+    public JPanel getPanel() {
+        return (JPanel) frame.getContentPane();  // Cast to JPanel
+    }
+
     // Display animals in the JTable
     public void displayAnimals() {
         List<Animal> animals = animalManageSystem.getAllAnimals();
@@ -285,8 +290,4 @@ public class AnimalManageApp {
         displayAnimals();  // Refresh table
     }
 
-    public static void main(String[] args) {
-        AnimalManageSystemImpl animalManageSystem = new AnimalManageSystemImpl();
-        new AnimalManageApp(animalManageSystem);
-    }
 }

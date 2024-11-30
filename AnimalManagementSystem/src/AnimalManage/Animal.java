@@ -1,4 +1,4 @@
-package src.AnimalManage;
+package AnimalManage;
 
 public class Animal {
     // Fields
