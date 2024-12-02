@@ -173,34 +173,32 @@ public class ProductManageSystemImpl implements ProductManageSystem{
 	                lines.add(line);
 	            }
 	        }
-	        for (Iterator<String> iterator = lines.iterator(); iterator.hasNext();) {
-	            String line = iterator.next();
+	        for (int i = 0; i < lines.size(); i++) {
+	            String line = lines.get(i);
 	            String[] productDetails = line.split(" / ");
-	            if (productDetails.length >= 2 && productDetails[1].equals(name)) {
-	            	int temp = Integer.parseInt(productDetails[2]);
-	            	if(temp >= 0) {
-	            		temp--;
-	            	}
-	            	productDetails[2] = Integer.toString(temp);
+	        
+	            if (productDetails.length >= 3 && productDetails[1].equals(name)) {
+	                int stock = Integer.parseInt(productDetails[2]);
+	                stock++;
+	                productDetails[2] = Integer.toString(stock);
+	                lines.set(i, String.join(" / ", productDetails));
 	                break;
 	            }
 	        }
-
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-                for (String line : lines) {
-                    writer.write(line);
-                    writer.newLine();
-                }
-            }
-
+	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+	            for (String line : lines) {
+	                writer.write(line);
+	                writer.newLine();
+	            }
+	        }
 	    } catch (IOException ex) {
 	        ex.printStackTrace();
-
 	    }
 	}
+
 	
 	public void stockMinus(String name) {
-		String filePath = "src/Repository/Productlist.txt";
+	    String filePath = "src/Repository/Productlist.txt";
 	    File file = new File(filePath);
 
 	    try {
@@ -211,29 +209,28 @@ public class ProductManageSystemImpl implements ProductManageSystem{
 	                lines.add(line);
 	            }
 	        }
-	        for (Iterator<String> iterator = lines.iterator(); iterator.hasNext();) {
-	            String line = iterator.next();
+	        for (int i = 0; i < lines.size(); i++) {
+	            String line = lines.get(i);
 	            String[] productDetails = line.split(" / ");
-	            if (productDetails.length >= 2 && productDetails[1].equals(name)) {
-	            	int temp = Integer.parseInt(productDetails[2]);
-	            	temp++;
-	            	productDetails[2] = Integer.toString(temp);
+	            if (productDetails.length >= 3 && productDetails[1].equals(name)) {
+	                int stock = Integer.parseInt(productDetails[2]);
+	                if (stock > 0) stock--;
+	                productDetails[2] = Integer.toString(stock);
+	                lines.set(i, String.join(" / ", productDetails));
 	                break;
 	            }
 	        }
-
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-                for (String line : lines) {
-                    writer.write(line);
-                    writer.newLine();
-                }
-            }
-
+	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+	            for (String line : lines) {
+	                writer.write(line);
+	                writer.newLine();
+	            }
+	        }
 	    } catch (IOException ex) {
 	        ex.printStackTrace();
-
 	    }
 	}
+
 	
 	public Order makeOrder(String name, int stock) {
 		Order order = new Order(name,stock);

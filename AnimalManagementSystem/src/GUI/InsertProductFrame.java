@@ -7,8 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import ProductManage.Product;
+import ProductManage.Food;
+import ProductManage.Medicine;
+import ProductManage.ProductManageSystemImpl;
+
 public class InsertProductFrame extends JFrame{
 	private File imageFile;
+	private Product product;
+	private ProductManageSystemImpl system = new ProductManageSystemImpl();
 
 	public InsertProductFrame(ProductFrame parentFrame, boolean isFood) {
 		super("Insert New Food");
@@ -44,11 +51,8 @@ public class InsertProductFrame extends JFrame{
 		JLabel blank5 = new JLabel();
 		JLabel blank6 = new JLabel();
 
-		
-		
-		
 		JLabel name = new JLabel("NAME :");
-		JLabel stock = new JLabel("AGE :");
+		JLabel stock = new JLabel("Quantity :");
 		JLabel expiration = new JLabel("EXPIRATION :");
 		if(!(isFood)) expiration = new JLabel("INSTRUCTION :");
 		
@@ -59,6 +63,7 @@ public class InsertProductFrame extends JFrame{
 		JTextField nameText = new JTextField(15);
 		JTextField stockText = new JTextField(15);
 		JTextField expirationText = new JTextField(15);
+		
 		
 		eastPanel.add(blank3);
 		eastPanel.add(blank4);
@@ -103,6 +108,40 @@ public class InsertProductFrame extends JFrame{
 		////////////////////////////////////////////
 		insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String nameGet = nameText.getText();
+			    int stockGet = Integer.parseInt(stockText.getText()); 
+			    String textGet = expirationText.getText();
+				
+				if (isFood) {
+				    product = new Food(nameGet, stockGet, textGet);
+				    Food food = (Food) product;// 올바른 데이터로 Food 객체 생성
+				    Boolean error = system.insertFood(food);
+				    if (error) {
+		                JOptionPane.showMessageDialog(null, "오류가 발생하였습니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+		            } else {
+		                JOptionPane.showMessageDialog(null, "정상적으로 입력되었습니다.", "입력 성공", JOptionPane.INFORMATION_MESSAGE);
+		                dispose();
+		            }
+				    // ProductSection 클래스 실행 (화면 갱신)
+			        ProductSection productSection = new ProductSection(parentFrame); // parentFrame은 현재 프레임
+			        parentFrame.setContentPane(productSection); // 기존 컨텐츠를 ProductSection으로 교체
+			        parentFrame.revalidate(); // 레이아웃을 다시 계산하여 화면에 반영
+			        parentFrame.repaint(); // 화면을 다시 그리기
+				}
+				else {
+					product = new Medicine(nameGet, stockGet, textGet);
+				    Medicine medicine = (Medicine) product;// 올바른 데이터로 Food 객체 생성
+				    Boolean error = system.insertMedicine(medicine);
+				    if (error) {
+		                JOptionPane.showMessageDialog(null, "오류가 발생하였습니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+		            } else {
+		                JOptionPane.showMessageDialog(null, "정상적으로 입력되었습니다.", "입력 성공", JOptionPane.INFORMATION_MESSAGE);
+		                dispose();
+		            }
+				    new ProductFrame();
+			        dispose();
+				}
 				
 			}
 		});

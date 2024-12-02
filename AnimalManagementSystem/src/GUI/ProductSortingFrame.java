@@ -1,11 +1,16 @@
 package GUI;
 
 import javax.swing.*;
+
+import ProductManage.ProductManageSystemImpl;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProductSortingFrame extends JFrame{
+	private ProductManageSystemImpl system = new ProductManageSystemImpl();
+	
 	public ProductSortingFrame(ProductFrame parentFrame) {
 		super("Sorting Option");
 		setLayout(new BorderLayout());
@@ -41,10 +46,13 @@ public class ProductSortingFrame extends JFrame{
         selectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (option1.isSelected()) {
-					
+					system.sortion(1);
                 } else if (option2.isSelected()) {
-                	
+                	system.sortion(2);
                 }
+				
+				new ProductFrame();
+		        dispose();
 			}
 		});
         

@@ -1,12 +1,15 @@
 package GUI;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import ProductManage.Product;
+import ProductManage.ProductManageSystemImpl;
 
 public class ProductFrame extends JFrame{
 	private Product selectedProduct;
+	private ProductManageSystemImpl system = new ProductManageSystemImpl();
 	
 	ProductFrame(){
 		super("PRODUCT INFOMATION");
@@ -66,6 +69,12 @@ public class ProductFrame extends JFrame{
             }
         });
 		
+		deleteProduct.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                showDeleteDialog();
+            }
+        });
+		
 		sortingOption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ProductSortingFrame(ProductFrame.this);
@@ -91,5 +100,25 @@ public class ProductFrame extends JFrame{
 	
 	private void showInsertPopupMenu(JButton button, JPopupMenu popupMenu) {
         popupMenu.show(button, 0, button.getHeight()); 
+    }
+	
+    private void showDeleteDialog() {
+        String name = JOptionPane.showInputDialog(null, "삭제할 물품의 이름을 입력하세요:");
+        
+        if (name != null && !name.trim().isEmpty()) {
+            boolean error = system.deleteProduct(name);
+            if (error) {
+                JOptionPane.showMessageDialog(null, "물품을 찾을 수 없습니다.");
+            } else {
+                JOptionPane.showMessageDialog(null, "성공적으로 삭제하였습니다.");
+            }
+        }
+        new ProductFrame();
+        dispose();
+    }
+    
+    public void refreshFrame() {
+        new ProductFrame(); // 새 프레임 생성
+        dispose(); // 기존 프레임 닫기
     }
 }

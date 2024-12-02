@@ -1,4 +1,5 @@
-Food / Apple / 10 / 2025-12-31
-Food / Banana / 10 / 2025-12-31
-Medicine / Aspirin / 20 / For headaches
-Medicine / Rspirin / 20 / For headaches
+Food / Apple / 22 / 2025-12-31
+
+Medicine / Mango / 12 / dsfd
+Medicine / asdfs / 12 / asdasf
+Food / sdfds / 12 / asfasf

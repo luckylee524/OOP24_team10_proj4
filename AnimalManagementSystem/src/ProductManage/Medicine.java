@@ -4,7 +4,7 @@ public class Medicine extends Product{
 	
 	String instruction;
 	
-	Medicine(String name, int stock, String instruction){
+	public Medicine(String name, int stock, String instruction){
 		super(name, stock);
 		this.instruction = instruction;
 	}

@@ -1,39 +1,33 @@
 package GUI;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ProductSection extends JPanel{
-	private ArrayList <ProductList> productList = new ArrayList<ProductList>(); 
-	
-	public ProductSection(ProductFrame parentFrame) {
-		ArrayList<JPanel> productPanels = new ArrayList<JPanel>();
-		
-		
-		////////////////////////////////////////////////////
-		//***connection here(Animal ArrayList 활용한 Panel 생성)
-		////////////////////////////////////////////////////
-		/*for(int i = 0; i < animalList.size(); i++) {
-			animalPanels.add(new AnimalPanel(animalList.get(i), parentFrame));
-		}
-	
-		if(picturePanels.size() < 3) setLayout(new GridLayout(3,1,0,10));
-		else setLayout(new GridLayout(picturePanels.size(),1,0,10));*/
-		setLayout(new GridLayout(3,1,0,10));
-		
-		productPanels.add(new ProductPanel(parentFrame));
+import ProductManage.Product;
 
-		
-		JScrollPane productScroll = new JScrollPane(this);
-		productScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		parentFrame.add(productScroll , BorderLayout.CENTER);
-		
-		/*for(int i = 0; i < animalList.size(); i++) {
-			add(animalPanels.get(i));
-		}*/	
-		
-		add(productPanels.get(0));
-	}
-
+public class ProductSection extends JPanel {
+    private ProductList productList = new ProductList();
+    
+    public ProductSection(ProductFrame parentFrame) {
+        // 기존의 Panel들을 모두 지우고 새로운 목록을 만들어서 갱신
+        removeAll();  // 기존에 있던 모든 컴포넌트를 지운다.
+        
+        ArrayList<JPanel> productPanels = new ArrayList<JPanel>();
+        
+        // 제품 목록을 불러와서 각 제품에 대한 Panel 생성
+        ArrayList<Product> products = productList.getProducts();
+        setLayout(new GridLayout(3, 1, 0, 10));  // 레이아웃 설정
+        for (int i = 0; i < products.size(); i++) {
+            productPanels.add(new ProductPanel(products.get(i), parentFrame)); // Product 객체를 전달
+            add(productPanels.get(i));  // 새로운 Panel을 추가
+        }
+        
+        // 화면 갱신: JScrollPane 추가
+        JScrollPane productScroll = new JScrollPane(this);
+        productScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        parentFrame.add(productScroll, BorderLayout.CENTER);  // 부모 프레임에 JScrollPane을 추가
+    }
 }
+

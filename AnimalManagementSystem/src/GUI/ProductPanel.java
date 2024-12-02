@@ -3,19 +3,29 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import ProductManage.Product;
+import ProductManage.ProductManageSystemImpl;
+import ProductManage.Food;
+import ProductManage.Medicine;
 
 
 public class ProductPanel extends JPanel{
 	private static ProductPanel lastClickedPanel = null;
 	private ProductFrame parentFrame;
 	private Product product;
+	private ProductManageSystemImpl system = new ProductManageSystemImpl();
 
 	
-	public ProductPanel(ProductFrame parentFrame) {
+	public ProductPanel(Product product, ProductFrame parentFrame) {
+		this.parentFrame = parentFrame;
+		this.product = product;
+		
 		setLayout(new BorderLayout(5,5));
 		setBorder(new LineBorder(Color.gray));
 		
@@ -54,27 +64,34 @@ public class ProductPanel extends JPanel{
 		stock.setFont(textFont);
 		
 		//Food or Medicine
-		JLabel thirdLabel = new JLabel("• EXPIRATION");
+		JLabel thirdLabel = new JLabel("• EXPIRATION ");
 		JLabel thirdLabelContent = new JLabel("TEST");
 		thirdLabel.setFont(textFont);
 		thirdLabelContent.setFont(contentFont);
 		
-		/*if(product instanceof Food) {
-			thirdLabel = new JLabel("• EXPIRATION");
+		if(product instanceof Food) {
+			Food food = (Food) product;
+			thirdLabelContent = new JLabel(food.getExpirationDate());
+			thirdLabelContent.setFont(contentFont);
 		}else if(product instanceof Medicine) {
-			thirdLabel = new JLabel("• INSTRUCTION");
-		}*/
+			thirdLabel = new JLabel("• INSTRUCTION ");
+			thirdLabel.setFont(textFont);
+			Medicine medicine = (Medicine) product;
+			thirdLabelContent = new JLabel(medicine.getInstruction());
+			thirdLabelContent.setFont(contentFont);
+		}
 		
 		///////////////////////////////////
 		//***connection here(Product 객체 정보)
 		///////////////////////////////////
-		JLabel nameContent = new JLabel("Food name TEST");
-		JLabel stockContent = new JLabel("Medicine name TEST");
+		//JLabel nameContent = new JLabel("Food name TEST");
+		JLabel nameContent = new JLabel(product.getName());
+		JLabel stockContent = new JLabel(Integer.toString(product.getStock()));
 		nameContent.setFont(contentFont);
 		stockContent.setFont(contentFont);
 
-		
-		/*if(product instanceof Food) {
+		/*
+		if(product instanceof Food) {
 			thirdLabelContent = new JLabel("• Food");
 		}else if(product instanceof Medicine) {
 			thirdLabelContent = new JLabel("• Medicine");
@@ -110,6 +127,19 @@ public class ProductPanel extends JPanel{
 		mainPanel.add(westPanel,BorderLayout.WEST);
 		mainPanel.add(eastPanel,BorderLayout.EAST);
 		add(mainPanel,BorderLayout.CENTER);
+		
+		btn1.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        system.stockPlus(product.getName()); // 재고 증가 처리
+		        parentFrame.refreshFrame(); // 프레임 갱신 요청
+		    }
+		});
+		btn2.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        system.stockMinus(product.getName()); // 재고 증가 처리
+		        parentFrame.refreshFrame(); // 프레임 갱신 요청
+		    }
+		});
 				
 	}
 	
