@@ -24,7 +24,6 @@ public class ProductList {
 	    products = new ArrayList<>();
 	    
 	    String filePath = "src/Repository/Productlist.txt";
-	    System.out.print("hello");
 	    File file = new File(filePath);
 	    
 	    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
