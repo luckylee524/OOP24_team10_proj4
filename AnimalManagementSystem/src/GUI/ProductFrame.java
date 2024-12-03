@@ -4,11 +4,12 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import ProductManage.Product;
 import ProductManage.ProductManageSystemImpl;
 
 public class ProductFrame extends JFrame{
-	private Product selectedProduct;
 	private ProductManageSystemImpl system = new ProductManageSystemImpl();
 	
 	ProductFrame(){
@@ -45,7 +46,7 @@ public class ProductFrame extends JFrame{
       
 		
 		//CENTER
-		add(new ProductSection(ProductFrame.this),BorderLayout.CENTER);
+		new ProductSection(ProductFrame.this);
 		
 		add(animalButton, BorderLayout.NORTH);
 		add(southPanel,BorderLayout.SOUTH);
@@ -94,10 +95,6 @@ public class ProductFrame extends JFrame{
         });
 	}
 	
-	public void setSelectedPicturePanel(Product product) {
-		this.selectedProduct = product;
-	}
-	
 	private void showInsertPopupMenu(JButton button, JPopupMenu popupMenu) {
         popupMenu.show(button, 0, button.getHeight()); 
     }
@@ -113,12 +110,18 @@ public class ProductFrame extends JFrame{
                 JOptionPane.showMessageDialog(null, "성공적으로 삭제하였습니다.");
             }
         }
-        new ProductFrame();
-        dispose();
+        refreshFrame();
     }
     
     public void refreshFrame() {
-        new ProductFrame(); // 새 프레임 생성
-        dispose(); // 기존 프레임 닫기
+    	for (Component comp : getContentPane().getComponents()) {
+	        if (comp instanceof JScrollPane) {
+	            remove(comp);
+	        }
+	    }
+
+		new ProductSection(ProductFrame.this);
+		repaint();
+		revalidate();
     }
 }

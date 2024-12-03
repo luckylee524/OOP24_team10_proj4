@@ -1,7 +1,4 @@
-Medicine / asdfs / 12 / src/Repository/images/food.jpg / as dasf
+Medicine / asdfs / 12 / src/Repository/images/food.jpg / asdasf
 Medicine / tesrt / 52 / src/Repository/images/food.jpg / heello
 Food / Apple / 22 / src/Repository/images/food.jpg / 2025-12-31
 Food / hello / 13 / src/Repository/images/food.jpg / world 
-
-
-Medicine / hello2 / 42 / C:\lion.jpg / GE

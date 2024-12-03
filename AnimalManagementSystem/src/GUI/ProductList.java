@@ -24,6 +24,7 @@ public class ProductList {
 	    products = new ArrayList<>();
 	    
 	    String filePath = "src/Repository/Productlist.txt";
+	    System.out.print("hello");
 	    File file = new File(filePath);
 	    
 	    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -32,11 +33,11 @@ public class ProductList {
 	            String[] details = line.split(" / ");
 	            if (details[0].equals("Food")) {
 	                // "Food" 라인일 경우 Food 객체 생성
-	                Food food = new Food(details[1], Integer.parseInt(details[2]), details[3]);
+	                Food food = new Food(details[1], Integer.parseInt(details[2]), details[3], details[4]);
 	                products.add(food);  // 제품 리스트에 Food 객체 추가
 	            } else if (details[0].equals("Medicine")) {
 	                // "Medicine" 라인일 경우 Medicine 객체 생성
-	                Medicine medicine = new Medicine(details[1], Integer.parseInt(details[2]), details[3]);
+	                Medicine medicine = new Medicine(details[1], Integer.parseInt(details[2]), details[3], details[4]);
 	                products.add(medicine);  // 제품 리스트에 Medicine 객체 추가
 	            }
 	        }

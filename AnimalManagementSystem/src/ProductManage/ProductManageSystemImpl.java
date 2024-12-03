@@ -30,7 +30,7 @@ public class ProductManageSystemImpl implements ProductManageSystem{
 	                writer.newLine();
 	            }
 	            // 데이터를 파일에 기록
-	            writer.write("Food" + " / " + food.getName() + " / " + food.getStock() + " / " + food.getExpirationDate());
+	            writer.write("Food" + " / " + food.getName() + " / " + food.getStock() + " / " + food.getImage() + " / " + food.getExpirationDate());
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();
@@ -64,7 +64,7 @@ public class ProductManageSystemImpl implements ProductManageSystem{
 	                writer.newLine();
 	            }
 	            // 데이터를 파일에 기록
-	            writer.write("Medicine" + " / " + medicine.getName() + " / " + medicine.getStock() + " / " + medicine.getInstruction());
+	            writer.write("Medicine" + " / " + medicine.getName() + " / " + medicine.getStock() + " / " + medicine.getImage() + " / " + medicine.getInstruction());
 	        }
 
 	    } catch (IOException e) {
