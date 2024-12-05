@@ -1,17 +1,22 @@
 package GUI;
 
+import AnimalManage.Animal;
+import AnimalManage.AnimalManageSystem;
+
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class InsertAnimalFrame extends JFrame{
 	private File imageFile;
 	
-	public InsertAnimalFrame(MainFrame parentFrame) {
+	public InsertAnimalFrame(AnimalManageSystem animalManageSystem, AnimalSection animalSection, MainFrame parentFrame) {
 		super("Insert New Animal");
 		setLayout(new BorderLayout(5,5));
 		
@@ -112,7 +117,25 @@ public class InsertAnimalFrame extends JFrame{
 		/////////////////////////////////////////////
 		insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				dispose();
+				String imageGet = null;
+				try {
+					imageGet = imageFile.getCanonicalPath();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+
+				Boolean error = animalManageSystem.insertAnimalFile(new Animal(speciesText.getText(),nameText.getText(),
+						Integer.parseInt(ageText.getText()),genderText.getText(),foundLocationText.getText(),adoptionStatusText.getText(),
+						vaccinationText.getText(),imageGet));
+				if (error) {
+					JOptionPane.showMessageDialog(null, "오류가 발생하였습니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "정상적으로 입력되었습니다.", "입력 성공", JOptionPane.INFORMATION_MESSAGE);
+					dispose();
+				}
+
+				animalSection.ChangeAnimalSection();
 			}
 		});
 		
