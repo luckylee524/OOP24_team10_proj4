@@ -2,4 +2,3 @@ Food / Apple / 22 / 2025-12-31
 
 Medicine / Mango / 12 / dsfd
 Medicine / asdfs / 12 / asdasf
-Food / sdfds / 12 / asfasf
