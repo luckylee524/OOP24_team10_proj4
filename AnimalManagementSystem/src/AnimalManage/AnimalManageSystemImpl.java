@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 public class AnimalManageSystemImpl implements AnimalManageSystem {
 
 	private static final String FILE_NAME = "src/Repository/AnimalList.txt";
-	private final Scanner scanner = new Scanner(System.in);
 
 	@Override
 	public List<Animal> loadAnimals() {
@@ -93,15 +92,6 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 			error = true;
 		}
 		return error;
-	}
-
-	@Override
-	public void insertAnimal(String species, String name, Integer age, String gender, String foundLocation, String adoptionStatus, String vaccinationStatus, String imagePath) {
-		List<Animal> animals = loadAnimals();
-
-		Animal newAnimal = new Animal(species, name, age, gender, foundLocation, adoptionStatus, vaccinationStatus, imagePath);
-		animals.add(newAnimal);
-		saveAnimals(animals);
 	}
 
 	@Override
@@ -196,11 +186,5 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 			animalToUpdate.setVaccinationStatus(status);
 			saveAnimals(animals);
 		}
-	}
-
-	// Return Animal List
-	@Override
-	public List<Animal> getAllAnimals() {
-		return loadAnimals();
 	}
 }
