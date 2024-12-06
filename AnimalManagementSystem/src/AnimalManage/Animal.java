@@ -9,9 +9,10 @@ public class Animal {
     private String foundLocation; // 발견 장소
     private String adoptionStatus; // 입양 상태
     private String vaccinationStatus; // 예방 접종 여부
+    private String imagePath; // 이미지 경로
 
     // Constructor (Optional)
-    public Animal(String species, String name, int age, String gender, String foundLocation, String adoptionStatus, String vaccinationStatus) {
+    public Animal(String species, String name, int age, String gender, String foundLocation, String adoptionStatus, String vaccinationStatus, String imagePath) {
         this.species = species;
         this.name = name;
         this.age = age;
@@ -19,6 +20,7 @@ public class Animal {
         this.foundLocation = foundLocation;
         this.adoptionStatus = adoptionStatus;
         this.vaccinationStatus = vaccinationStatus;
+        this.imagePath = imagePath;
     }
 
     // Default Constructor (Optional)
@@ -80,5 +82,13 @@ public class Animal {
 
     public void setVaccinationStatus(String vaccinationStatus) {
         this.vaccinationStatus = vaccinationStatus;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

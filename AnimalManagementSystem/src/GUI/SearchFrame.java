@@ -1,16 +1,22 @@
 package GUI;
 
+import AnimalManage.Animal;
+import AnimalManage.AnimalManageSystem;
+import AnimalManage.AnimalManageSystemImpl;
+
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class SearchFrame extends JFrame{
 	
-	public SearchFrame(MainFrame parentFrame) {
+	public SearchFrame(AnimalManageSystem animalManageSystem, AnimalSection animalSection, MainFrame parentFrame) {
 		super("Search Animal");
+
 		setLayout(new BorderLayout(5,5));
 		
 		Font textFont = new Font("Tahoma", Font.BOLD,13);
@@ -90,11 +96,12 @@ public class SearchFrame extends JFrame{
 		search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new SearchResultFrame(parentFrame);
+				ArrayList<Animal> animals = (ArrayList<Animal>) animalManageSystem.search(speciesText.getText(), nameText.getText(), ageText.getText(),
+						genderText.getText(), foundLocationText.getText(), adoptionStatusText.getText(), vaccinationText.getText());
+				animalSection.ChangeAnimalSection(animals);
 			}
 		});
-		
-		
+
 		setSize(600,250);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -1,12 +1,14 @@
 package GUI;
 
+import AnimalManage.AnimalManageSystem;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AnimalSortingFrame extends JFrame{
-	public AnimalSortingFrame(MainFrame parentFrame) {
+	public AnimalSortingFrame(AnimalManageSystem animalManageSystem, AnimalSection animalSection, MainFrame parentFrame) {
 		super("Sorting Option");
 		setLayout(new BorderLayout());
 		
@@ -44,9 +46,16 @@ public class AnimalSortingFrame extends JFrame{
         selectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (option1.isSelected()) {
+                    animalManageSystem.sortAnimal();
                 } else if (option2.isSelected()) {
+                    animalManageSystem.sortAnimalBySpecies();
                 } else if (option3.isSelected()) {
+                    animalManageSystem.sortAnimalByName();
                 }
+                animalSection.ChangeAnimalSection();
+                JOptionPane.showMessageDialog(null, "정렬이 완료되었습니다.", "정렬 완료", JOptionPane.INFORMATION_MESSAGE);
+
+                dispose();
 			}
 		});
         

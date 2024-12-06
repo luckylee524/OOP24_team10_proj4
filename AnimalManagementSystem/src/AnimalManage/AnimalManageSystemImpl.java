@@ -1,13 +1,14 @@
 package AnimalManage;
 
+import ProductManage.Food;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class AnimalManageSystemImpl implements AnimalManageSystem {
 
-	private static final String FILE_NAME = "AnimalList.txt";
-	private final Scanner scanner = new Scanner(System.in);
+	private static final String FILE_NAME = "src/Repository/AnimalList.txt";
 
 	@Override
 	public List<Animal> loadAnimals() {
@@ -15,8 +16,8 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				String[] data = line.split(",");
-				if (data.length == 7) {
+				String[] data = line.split(" / ");
+				if (data.length == 8) {
 					String species = data[0];
 					String name = data[1];
 					int age = Integer.parseInt(data[2]);
@@ -24,7 +25,8 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 					String foundLocation = data[4];
 					String adoptionStatus = data[5];
 					String vaccinationStatus = data[6];
-					animals.add(new Animal(species, name, age, gender, foundLocation, adoptionStatus, vaccinationStatus));
+					String imagePath = data[7];
+					animals.add(new Animal(species, name, age, gender, foundLocation, adoptionStatus, vaccinationStatus, imagePath));
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -40,14 +42,15 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 	public void saveAnimals(List<Animal> animals) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
 			for (Animal animal : animals) {
-				writer.write(String.format("%s,%s,%d,%s,%s,%s,%s%n",
+				writer.write(String.format("%s / %s / %d / %s / %s / %s / %s / %s%n",
 						animal.getSpecies(),
 						animal.getName(),
 						animal.getAge(),
 						animal.getGender(),
 						animal.getFoundLocation(),
 						animal.getAdoptionStatus(),
-						animal.getVaccinationStatus()));
+						animal.getVaccinationStatus(),
+						animal.getImagePath()));
 			}
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
@@ -55,22 +58,52 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 	}
 
 	@Override
-	public void insertAnimal(String species, String name, Integer age, String gender, String foundLocation, String adoptionStatus, String vaccinationStatus) {
-		List<Animal> animals = loadAnimals();
+	public boolean insertAnimalFile(Animal animal) {
+		boolean error = false;
+		String filePath = "src/Repository/AnimalList.txt";
+		File file = new File(filePath);
+		boolean isDuplicate = false;
 
-		Animal newAnimal = new Animal(species, name, age, gender, foundLocation, adoptionStatus, vaccinationStatus);
-		animals.add(newAnimal);
-		saveAnimals(animals);
+		try (BufferedReader reader = new BufferedReader(new FileReader(file));
+			 BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] animalDetails = line.split(" / ");
+				if (animalDetails.length >= 2 && animalDetails[1].equals(animal.getName())) {
+					isDuplicate = true;
+					break;
+				}
+			}
+
+			if (isDuplicate) {
+				error = true;
+			} else {
+				// 파일이 비어있지 않으면 newLine()을 호출하여 줄바꿈 추가
+				if (file.length() > 0) {
+					writer.newLine();
+				}
+				// 데이터를 파일에 기록
+				writer.write(animal.getSpecies() + " / " + animal.getName() + " / " + animal.getAge() + " / "
+						+ animal.getGender() + " / " + animal.getFoundLocation() + " / " + animal.getAdoptionStatus()
+						+ " / " + animal.getVaccinationStatus() + " / " + animal.getImagePath());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			error = true;
+		}
+		return error;
 	}
 
 	@Override
-	public void deleteAnimal(String name) {
+	public Boolean deleteAnimal(String name) {
 		List<Animal> animals = loadAnimals();
 
 		boolean isDeleted = animals.removeIf(animal -> animal.getName().equalsIgnoreCase(name));
 		if (isDeleted) {
 			saveAnimals(animals);
 		}
+
+		return isDeleted;
 	}
 
 	// dafault : sort by age
@@ -103,17 +136,25 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 			return;
 		}
 
-		animals.sort(Comparator.comparing(Animal::getName));
+		animals.sort(Comparator.comparing(Animal::getSpecies));
 		saveAnimals(animals);
 	}
 
 	@Override
-	public List<Animal> search(String name) {
+	public List<Animal> search(String speciesText, String nameText, String ageText, String genderText,
+							   String foundLocationText, String adoptionStatusText, String vaccinationText) {
 		List<Animal> animals = loadAnimals();
+
 		List<Animal> foundAnimals = animals.stream()
-				.filter(animal -> animal.getName().equals(name))
+				.filter(animal -> speciesText.isEmpty() || animal.getSpecies().equals(speciesText))
+				.filter(animal -> nameText.isEmpty() || animal.getName().equals(nameText))
+				.filter(animal -> ageText.isEmpty() || animal.getAge() == Integer.parseInt(ageText))
+				.filter(animal -> genderText.isEmpty() || animal.getGender().equals(genderText))
+				.filter(animal -> foundLocationText.isEmpty() || animal.getFoundLocation().equals(foundLocationText))
+				.filter(animal -> adoptionStatusText.isEmpty() || animal.getAdoptionStatus().equals(adoptionStatusText))
+				.filter(animal -> vaccinationText.isEmpty() || animal.getVaccinationStatus().equals(vaccinationText))
 				.collect(Collectors.toList());
-		System.out.println(foundAnimals);
+
 		return foundAnimals;
 	}
 
@@ -145,11 +186,5 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 			animalToUpdate.setVaccinationStatus(status);
 			saveAnimals(animals);
 		}
-	}
-
-	// Return Animal List
-	@Override
-	public List<Animal> getAllAnimals() {
-		return loadAnimals();
 	}
 }

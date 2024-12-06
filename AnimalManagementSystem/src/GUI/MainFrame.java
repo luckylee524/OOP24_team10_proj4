@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import AnimalManage.Animal;
+import AnimalManage.AnimalManageSystem;
+import AnimalManage.AnimalManageSystemImpl;
 
 public class MainFrame extends JFrame{
 	private Animal selectedAnimal;
@@ -41,10 +43,10 @@ public class MainFrame extends JFrame{
 		productButton.setFont(buttonFont);
 		
 		add(productButton, BorderLayout.NORTH);
-		
-		
+
 		//Center Panel
-		new AnimalSection(MainFrame.this);
+		AnimalManageSystem animalManageSystem = new AnimalManageSystemImpl();
+		AnimalSection animalSection = new AnimalSection(animalManageSystem, MainFrame.this);
 		
 		setSize(1000,600);
 		setVisible(true);
@@ -59,7 +61,7 @@ public class MainFrame extends JFrame{
 		
 		insertAnimal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new InsertAnimalFrame(MainFrame.this);
+				new InsertAnimalFrame(animalManageSystem, animalSection,MainFrame.this);
 			}
 		});
 		
@@ -68,19 +70,40 @@ public class MainFrame extends JFrame{
 		////////////////////////////////////////////////////
 		deleteAnimal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String name = JOptionPane.showInputDialog(null, "삭제할 동물의 이름을 입력하세요:");
+
+				if (name != null && !name.trim().isEmpty()) {
+					boolean error = animalManageSystem.deleteAnimal(name);
+					if (!error) {
+						JOptionPane.showMessageDialog(null, "동물을 찾을 수 없습니다.");
+					} else {
+						JOptionPane.showMessageDialog(null, "성공적으로 삭제하였습니다.");
+					}
+				}
+
+//				for (Component comp : getContentPane().getComponents()) {
+//					if (comp instanceof JScrollPane) {
+//						remove(comp);
+//					}
+//				}
+
+				animalSection.ChangeAnimalSection();
+				revalidate();
+				repaint();
 			}
 		});
 		
 		search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new SearchFrame(MainFrame.this);
+				new SearchFrame(animalManageSystem, animalSection, MainFrame.this);
 			}
 		});
 		
 		sortingOption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AnimalSortingFrame(MainFrame.this);
+				new AnimalSortingFrame(animalManageSystem, animalSection, MainFrame.this);
 			}
+
 		});
 		
 	}
