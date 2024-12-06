@@ -36,18 +36,16 @@ public class ProductPanel extends JPanel{
 		//***connection here(이미지 로드)
 		/////////////////////////////
 		//WEST
-		ImageIcon iconTemp = new ImageIcon("C:\\food.jpg");
+		ImageIcon iconTemp = new ImageIcon(product.getImage());
 		Image originalImage = iconTemp.getImage();
 		Image resizedImage = originalImage.getScaledInstance(200, 140, Image.SCALE_SMOOTH);
 		ImageIcon resizedImageIcon = new ImageIcon(resizedImage);
 
 		JLabel imageLabel = new JLabel(resizedImageIcon);
-		imageLabel.addMouseListener(new ClickListener(this));
 		add(imageLabel,BorderLayout.WEST);
 		
 		
 		JPanel mainPanel = new JPanel();
-		mainPanel.addMouseListener(new ClickListener(this));
 		mainPanel.setLayout(new BorderLayout(5,5));
 		mainPanel.setBorder(new LineBorder(new Color(100, 180, 240)));
 		
@@ -56,7 +54,6 @@ public class ProductPanel extends JPanel{
 		//Product content
 		JPanel westPanel = new JPanel();
 		westPanel.setLayout(new GridLayout(3, 2));
-		westPanel.addMouseListener(new ClickListener(this));
 		
 		JLabel name = new JLabel("• NAME");
 		JLabel stock = new JLabel("• STOCK");
@@ -89,13 +86,6 @@ public class ProductPanel extends JPanel{
 		JLabel stockContent = new JLabel(Integer.toString(product.getStock()));
 		nameContent.setFont(contentFont);
 		stockContent.setFont(contentFont);
-
-		/*
-		if(product instanceof Food) {
-			thirdLabelContent = new JLabel("• Food");
-		}else if(product instanceof Medicine) {
-			thirdLabelContent = new JLabel("• Medicine");
-		}*/
 		
 		westPanel.add(name);
 		westPanel.add(nameContent);
@@ -110,7 +100,6 @@ public class ProductPanel extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH; 
         gbc.insets = new Insets(5, 5, 5, 5);
-		eastPanel.addMouseListener(new ClickListener(this));
 
 		JButton btn1 = new JButton("ADD");
 		btn1.setBackground(new Color(192, 192, 192));
@@ -143,20 +132,4 @@ public class ProductPanel extends JPanel{
 				
 	}
 	
-	private class ClickListener extends MouseAdapter{
-		private ProductPanel panel;
-		
-		public ClickListener(ProductPanel panel) {
-			this.panel = panel;
-		};
-		
-		public void mouseClicked(MouseEvent e) {
-			if (lastClickedPanel != null) {
-                lastClickedPanel.setBorder(new LineBorder(Color.gray));
-            }
-            panel.setBorder(new LineBorder(Color.RED));
-            lastClickedPanel = panel;
-            parentFrame.setSelectedPicturePanel(lastClickedPanel.product);
-		}
-	}
 }

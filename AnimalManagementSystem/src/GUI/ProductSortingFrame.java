@@ -51,8 +51,9 @@ public class ProductSortingFrame extends JFrame{
                 	system.sortion(2);
                 }
 				
-				new ProductFrame();
-		        dispose();
+                JOptionPane.showMessageDialog(null, "정렬이 완료되었습니다.", "정렬 완료", JOptionPane.INFORMATION_MESSAGE);
+				parentFrame.refreshFrame();
+				dispose();
 			}
 		});
         
