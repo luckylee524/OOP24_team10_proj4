@@ -117,25 +117,32 @@ public class InsertAnimalFrame extends JFrame{
 		/////////////////////////////////////////////
 		insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				String imageGet = null;
-				try {
-					imageGet = imageFile.getCanonicalPath();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				
+				if(imageFile == null || (speciesText.getText()).isEmpty() || (nameText.getText()).isEmpty() || (ageText.getText()).isEmpty() ||
+						(genderText.getText()).isEmpty()|| (foundLocationText.getText()).isEmpty() || (adoptionStatusText.getText()).isEmpty() || (vaccinationText.getText()).isEmpty()) {
+			    	JOptionPane.showMessageDialog(InsertAnimalFrame.this, "EMPTY INPUT DETECTED");
+			    }else {
+			    	dispose();
+					String imageGet = null;
+					try {
+						imageGet = imageFile.getCanonicalPath();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 
-				Boolean error = animalManageSystem.insertAnimalFile(new Animal(speciesText.getText(),nameText.getText(),
-						Integer.parseInt(ageText.getText()),genderText.getText(),foundLocationText.getText(),adoptionStatusText.getText(),
-						vaccinationText.getText(),imageGet));
-				if (error) {
-					JOptionPane.showMessageDialog(null, "오류가 발생하였습니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, "정상적으로 입력되었습니다.", "입력 성공", JOptionPane.INFORMATION_MESSAGE);
-					dispose();
-				}
+					Boolean error = animalManageSystem.insertAnimalFile(new Animal(speciesText.getText(),nameText.getText(),
+							Integer.parseInt(ageText.getText()),genderText.getText(),foundLocationText.getText(),adoptionStatusText.getText(),
+							vaccinationText.getText(),imageGet));
+					if (error) {
+						JOptionPane.showMessageDialog(null, "An error has occurred.", "Input error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "The input was successful.", "Input Success", JOptionPane.INFORMATION_MESSAGE);
+						dispose();
+					}
 
-				animalSection.ChangeAnimalSection();
+					animalSection.ChangeAnimalSection();
+			    }
+				
 			}
 		});
 		
