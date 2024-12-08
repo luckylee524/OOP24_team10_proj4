@@ -1,4 +1,11 @@
-cat,jeff,3,Male,New York,Pending,No
-dog,jessie,4,Female,Tokyo,Confirmed,Yes
-horse,john,1,Male,Seoul,Confirmed,Yes
-mouse,sophia,2,Female,London,Not Confirmed,Yes
+cat / jeff / 3 / Male / New York / Approved / No / src/Repository/AnimalImages/cat.jpg
+dog / sophia / 5 / Female / London / Confirmed / Yes / src/Repository/AnimalImages/dog.jpg
+eagle / michael / 3 / Male / Ottawa / Not Confirmed / Yes / src/Repository/AnimalImages/eagle.jpg
+giraffe / jones / 2 / Female / Busan / Confirmed / No / src/Repository/AnimalImages/giraffe.jpg
+horse / john / 1 / Male / Seoul / Confirmed / Yes / src/Repository/AnimalImages/horse.jpg
+lion / jessie / 4 / Female / Tokyo / Confirmed / Yes / src/Repository/AnimalImages/lion.jpg
+monkey / kurose / 5 / Female / Toronto / Not Confirmed / Yes / src/Repository/AnimalImages/monkey.jpg
+owl / pereira / 2 / Male / Seoul / Confirmed / Yes / src/Repository/AnimalImages/owl.jpg
+tiger / james / 4 / Female / Rome / Pending / No / src/Repository/AnimalImages/tiger.jpg
+zebra / dwin / 2 / Male / Paris / Not Confirmed / No / src/Repository/AnimalImages/zebra.jpg
+bird / andrew / 5 / Male / Seoul / Not confirmed / NO / C:\Users\이승언\git\OOP24_team10_proj4\AnimalManagementSystem\src\Repository\AnimalImages\bird.jpg

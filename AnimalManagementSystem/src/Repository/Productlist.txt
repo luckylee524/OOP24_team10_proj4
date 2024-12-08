@@ -1,13 +1,3 @@
-Medicine / Antiseptic spray / 30 / src/Repository/images/AntisepticSpray.jpg / None
-Medicine / Bandages / 30 / src/Repository/images/Bandages.jpg / as dasf
-Medicine / Deworming tablets / 30 / src/Repository/images/DewormingTablets.jpg / as dasf
-Medicine / Dietary supplements / 30 / src/Repository/images/DietarySupplements.jpg / as dasf
-Medicine / Flea and tick treatments / 30 / src/Repository/images/Flea.jpg / as dasf
-Medicine / Pill bottles / 30 / src/Repository/images/PillBottles.jpg / as dasf
-Medicine / Syringes / 30 / src/Repository/images/Syringes.jpg / Use for administering 
-Medicine / Thermometer packs / 30 / src/Repository/images/ThermometerPacks.jpg / heello
-Medicine / Vaccination vials / 30 / src/Repository/images/VaccinationVials.jpg / as dasf
-Medicine / Wound creams / 30 / src/Repository/images/WoundCreams.jpg / GE
 Food / Bird seeds / 30 / src/Repository/images/BirdSeeds.jpg / 2026-06-30 
 Food / Cat food / 30 / src/Repository/images/CatFood.jpg / 2026-01-21 
 Food / Chicken feed / 30 / src/Repository/images/ChickenFeed.jpg / 2026-02-31
@@ -18,3 +8,13 @@ Food / Fruits / 30 / src/Repository/images/Fruits.jpg / 2027-08-31
 Food / Hay bales / 30 / src/Repository/images/HayBales.jpg / 2026-11-31 
 Food / Insect feed / 30 / src/Repository/images/InsectFeed.jpg / 2027-05-31 
 Food / Pellets / 30 / src/Repository/images/Pellets.jpg / 2026-07-11
+Medicine / Antiseptic spray / 30 / src/Repository/images/AntisepticSpray.jpg / None
+Medicine / Bandage / 30 / C:\Users\이승언\git\OOP24_team10_proj4\AnimalManagementSystem\src\Repository\images\Bandages.jpg / For test
+Medicine / Deworming tablets / 30 / src/Repository/images/DewormingTablets.jpg / as dasf
+Medicine / Dietary supplements / 30 / src/Repository/images/DietarySupplements.jpg / as dasf
+Medicine / Flea and tick treatments / 30 / src/Repository/images/Flea.jpg / as dasf
+Medicine / Pill bottles / 30 / src/Repository/images/PillBottles.jpg / as dasf
+Medicine / Syringes / 30 / src/Repository/images/Syringes.jpg / Use for administering 
+Medicine / Thermometer packs / 30 / src/Repository/images/ThermometerPacks.jpg / heello
+Medicine / Vaccination vials / 30 / src/Repository/images/VaccinationVials.jpg / as dasf
+Medicine / Wound creams / 30 / src/Repository/images/WoundCreams.jpg / GE

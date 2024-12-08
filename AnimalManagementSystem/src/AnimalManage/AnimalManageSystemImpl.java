@@ -59,40 +59,48 @@ public class AnimalManageSystemImpl implements AnimalManageSystem {
 
 	@Override
 	public boolean insertAnimalFile(Animal animal) {
-		boolean error = false;
-		String filePath = "src/Repository/AnimalList.txt";
-		File file = new File(filePath);
-		boolean isDuplicate = false;
+	    boolean error = false;
+	    String filePath = "src/Repository/AnimalList.txt";
+	    File file = new File(filePath);
+	    boolean isDuplicate = false;
 
-		try (BufferedReader reader = new BufferedReader(new FileReader(file));
-			 BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] animalDetails = line.split(" / ");
-				if (animalDetails.length >= 2 && animalDetails[1].equals(animal.getName())) {
-					isDuplicate = true;
-					break;
-				}
-			}
+	    try (BufferedReader reader = new BufferedReader(new FileReader(file));
+	         BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
 
-			if (isDuplicate) {
-				error = true;
-			} else {
-				// 파일이 비어있지 않으면 newLine()을 호출하여 줄바꿈 추가
-				if (file.length() > 0) {
-					writer.newLine();
-				}
-				// 데이터를 파일에 기록
-				writer.write(animal.getSpecies() + " / " + animal.getName() + " / " + animal.getAge() + " / "
-						+ animal.getGender() + " / " + animal.getFoundLocation() + " / " + animal.getAdoptionStatus()
-						+ " / " + animal.getVaccinationStatus() + " / " + animal.getImagePath());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			error = true;
-		}
-		return error;
+	        // 중복 확인
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            String[] animalDetails = line.split(" / ");
+	            if (animalDetails.length >= 2 && animalDetails[1].equals(animal.getName())) {
+	                isDuplicate = true;
+	                break;
+	            }
+	        }
+
+	        if (isDuplicate) {
+	            error = true;
+	        } else {
+	            // 파일 끝에 줄바꿈 여부 확인
+	            if (file.length() > 0) {
+	                try (RandomAccessFile raf = new RandomAccessFile(file, "r")) {
+	                    raf.seek(file.length() - 1);
+	                    if (raf.read() != '\n') { // 마지막이 줄바꿈이 아니면 추가
+	                        writer.newLine();
+	                    }
+	                }
+	            }
+	            // 새 데이터 추가
+	            writer.write(animal.getSpecies() + " / " + animal.getName() + " / " + animal.getAge() + " / "
+	                    + animal.getGender() + " / " + animal.getFoundLocation() + " / " + animal.getAdoptionStatus()
+	                    + " / " + animal.getVaccinationStatus() + " / " + animal.getImagePath());
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        error = true;
+	    }
+	    return error;
 	}
+
 
 	@Override
 	public Boolean deleteAnimal(String name) {
