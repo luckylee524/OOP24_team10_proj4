@@ -9,7 +9,7 @@ Food / Hay bales / 30 / src/Repository/images/HayBales.jpg / 2026-11-31
 Food / Insect feed / 30 / src/Repository/images/InsectFeed.jpg / 2027-05-31 
 Food / Pellets / 30 / src/Repository/images/Pellets.jpg / 2026-07-11
 Medicine / Antiseptic spray / 30 / src/Repository/images/AntisepticSpray.jpg / None
-Medicine / Bandage / 30 / C:\Users\이승언\git\OOP24_team10_proj4\AnimalManagementSystem\src\Repository\images\Bandages.jpg / For test
+Medicine / Bandage / 30 / src/Repository/images/Bandages.jpg / For test
 Medicine / Deworming tablets / 30 / src/Repository/images/DewormingTablets.jpg / as dasf
 Medicine / Dietary supplements / 30 / src/Repository/images/DietarySupplements.jpg / as dasf
 Medicine / Flea and tick treatments / 30 / src/Repository/images/Flea.jpg / as dasf

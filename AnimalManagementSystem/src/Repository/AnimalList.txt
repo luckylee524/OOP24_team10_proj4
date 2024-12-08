@@ -1,5 +1,5 @@
-Bird / Andrew / 3 / Male / Seoul / Adopted / No / C:\Users\이승언\git\OOP24_team10_proj4\AnimalManagementSystem\src\Repository\AnimalImages\bird.jpg
-Cat / Jeff / 3 / Male / Seoul / Not Confirmed / Yes / C:\Users\이승언\git\OOP24_team10_proj4\AnimalManagementSystem\src\Repository\AnimalImages\cat.jpg
+Bird / Andrew / 3 / Male / Seoul / Adopted / No / src/Repository/AnimalImages/bird.jpg
+Cat / Jeff / 3 / Male / Seoul / Not Confirmed / Yes / src/Repository/AnimalImages/cat.jpg
 zebra / dwin / 2 / Male / Paris / Not Confirmed / No / src/Repository/AnimalImages/zebra.jpg
 tiger / james / 4 / Female / Rome / Pending / No / src/Repository/AnimalImages/tiger.jpg
 lion / jessie / 4 / Female / Tokyo / Confirmed / Yes / src/Repository/AnimalImages/lion.jpg
