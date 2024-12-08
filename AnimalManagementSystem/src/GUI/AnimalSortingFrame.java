@@ -53,7 +53,7 @@ public class AnimalSortingFrame extends JFrame{
                     animalManageSystem.sortAnimalByName();
                 }
                 animalSection.ChangeAnimalSection();
-                JOptionPane.showMessageDialog(null, "정렬이 완료되었습니다.", "정렬 완료", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Sorting was successful.", "Sorted complete", JOptionPane.INFORMATION_MESSAGE);
 
                 dispose();
 			}

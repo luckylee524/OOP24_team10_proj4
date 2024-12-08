@@ -70,14 +70,14 @@ public class MainFrame extends JFrame{
 		////////////////////////////////////////////////////
 		deleteAnimal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = JOptionPane.showInputDialog(null, "삭제할 동물의 이름을 입력하세요:");
+				String name = JOptionPane.showInputDialog(null, "Enter the name of the animal you want to delete:");
 
 				if (name != null && !name.trim().isEmpty()) {
 					boolean error = animalManageSystem.deleteAnimal(name);
 					if (!error) {
-						JOptionPane.showMessageDialog(null, "동물을 찾을 수 없습니다.");
+						JOptionPane.showMessageDialog(null, "The animal was not found.");
 					} else {
-						JOptionPane.showMessageDialog(null, "성공적으로 삭제하였습니다.");
+						JOptionPane.showMessageDialog(null, "Deleted successfully.");
 					}
 				}
 

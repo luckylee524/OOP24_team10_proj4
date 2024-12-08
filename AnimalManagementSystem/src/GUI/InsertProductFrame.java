@@ -131,9 +131,9 @@ public class InsertProductFrame extends JFrame{
 					    Food food = (Food) product;// 올바른 데이터로 Food 객체 생성
 					    Boolean error = system.insertFood(food);
 					    if (error) {
-			                JOptionPane.showMessageDialog(null, "오류가 발생하였습니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+			                JOptionPane.showMessageDialog(null, "An error has occurred.", "Input error", JOptionPane.ERROR_MESSAGE);
 			            } else {
-			                JOptionPane.showMessageDialog(null, "정상적으로 입력되었습니다.", "입력 성공", JOptionPane.INFORMATION_MESSAGE);
+			                JOptionPane.showMessageDialog(null, "The input was successful.", "Input Success", JOptionPane.INFORMATION_MESSAGE);
 			                dispose();
 			            }
 					    // ProductSection 클래스 실행 (화면 갱신)
@@ -145,9 +145,9 @@ public class InsertProductFrame extends JFrame{
 					    Medicine medicine = (Medicine) product;// 올바른 데이터로 Food 객체 생성
 					    Boolean error = system.insertMedicine(medicine);
 					    if (error) {
-			                JOptionPane.showMessageDialog(null, "오류가 발생하였습니다.", "입력 오류", JOptionPane.ERROR_MESSAGE);
+			                JOptionPane.showMessageDialog(null, "An error has occurred.", "Input error", JOptionPane.ERROR_MESSAGE);
 			            } else {
-			                JOptionPane.showMessageDialog(null, "정상적으로 입력되었습니다.", "입력 성공", JOptionPane.INFORMATION_MESSAGE);
+			                JOptionPane.showMessageDialog(null, "The input was successful.", "Input Success", JOptionPane.INFORMATION_MESSAGE);
 			                dispose();
 			            }
 					    parentFrame.refreshFrame();

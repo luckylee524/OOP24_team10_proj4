@@ -100,14 +100,14 @@ public class ProductFrame extends JFrame{
     }
 	
     private void showDeleteDialog() {
-        String name = JOptionPane.showInputDialog(null, "삭제할 물품의 이름을 입력하세요:");
+        String name = JOptionPane.showInputDialog(null, "Enter the name of the animal you want to delete:");
         
         if (name != null && !name.trim().isEmpty()) {
             boolean error = system.deleteProduct(name);
             if (error) {
-                JOptionPane.showMessageDialog(null, "물품을 찾을 수 없습니다.");
+                JOptionPane.showMessageDialog(null, "The animal was not found.");
             } else {
-                JOptionPane.showMessageDialog(null, "성공적으로 삭제하였습니다.");
+                JOptionPane.showMessageDialog(null, "Deleted successfully.");
             }
         }
         refreshFrame();
